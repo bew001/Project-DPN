@@ -33,6 +33,8 @@ return s ;
 }
 
 var data ='';
+
+router.get('/', function(req, res){
 https.get('https://www.worldometers.info/coronavirus/', (resp) => {
     //let data = '';
 
@@ -61,7 +63,7 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
             if (fd[i].rank == '')
                 fd[i].rank = 0;
             else
-                fd[i].rank = parseInt(fd[i].rank.split(',').join(''));
+                fd[i].rank = Number.isInteger(parseInt(fd[i].rank.split(',').join(''))) ? parseInt(fd[i].rank.split(',').join('')) : 0;
 
             if (fd[i].country == '')
                 fd[i].country = 'null';
@@ -69,71 +71,71 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
             if (fd[i].totalcases == '')
                 fd[i].totalcases = 0;
             else
-                fd[i].totalcases = parseInt(fd[i].totalcases.split(',').join(''));
+                fd[i].totalcases = Number.isInteger(parseInt(fd[i].totalcases.split(',').join(''))) ? parseInt(fd[i].totalcases.split(',').join('')) : 0;
 
             if (fd[i].newcases == '')
                 fd[i].newcases = 0;
             else
-                fd[i].newcases = parseInt(fd[i].newcases.split(',').join(''));
+                fd[i].newcases = Number.isInteger(parseInt(fd[i].newcases.split(',').join(''))) ? parseInt(fd[i].newcases.split(',').join('')) : 0;
 
             if (fd[i].totaldeaths == '')
                 fd[i].totaldeaths = 0;
             else
-                fd[i].totaldeaths = parseInt(fd[i].totaldeaths.split(',').join(''));
+                fd[i].totaldeaths = Number.isInteger(parseInt(fd[i].totaldeaths.split(',').join(''))) ? parseInt(fd[i].totaldeaths.split(',').join('')) : 0;
 
             if (fd[i].newdeaths == '')
                 fd[i].newdeaths = 0;
             else
-                fd[i].newdeaths = parseInt(fd[i].newdeaths.split(',').join(''));
+                fd[i].newdeaths = Number.isInteger(parseInt(fd[i].newdeaths.split(',').join(''))) ? parseInt(fd[i].newdeaths.split(',').join('')) : 0;
 
             if (fd[i].totalrecovered == '')
                 fd[i].totalrecovered = 0;
             else
-                fd[i].totalrecovered = parseInt(fd[i].totalrecovered.split(',').join(''));
+                fd[i].totalrecovered = Number.isInteger(parseInt(fd[i].totalrecovered.split(',').join(''))) ? parseInt(fd[i].totalrecovered.split(',').join('')) : 0;
 
             if (fd[i].activecases == '')
                 fd[i].activecases = 0;
             else
-                fd[i].activecases = parseInt(fd[i].activecases.split(',').join(''));
+                fd[i].activecases = Number.isInteger(parseInt(fd[i].activecases.split(',').join(''))) ? parseInt(fd[i].activecases.split(',').join('')) : 0;
 
             if (fd[i].serious == '')
                 fd[i].serious = 0;
             else
-                fd[i].serious= parseInt(fd[i].serious.split(',').join(''));
+                fd[i].serious= Number.isInteger(parseInt(fd[i].serious.split(',').join(''))) ? parseInt(fd[i].serious.split(',').join('')) : 0;
 
             if (fd[i].totalcasesper1mpop == '')
                 fd[i].totalcasesper1mpop = 0;
             else
-                fd[i].totalcasesper1mpop = parseInt(fd[i].totalcasesper1mpop.split(',').join(''));
+                fd[i].totalcasesper1mpop = Number.isInteger(parseInt(fd[i].totalcasesper1mpop.split(',').join(''))) ? parseInt(fd[i].totalcasesper1mpop.split(',').join('')) : 0;
 
             if (fd[i].deathper1mpop == '')
                 fd[i].deathper1mpop = 0;
             else
-                fd[i].deathper1mpop = parseInt(fd[i].deathper1mpop.split(',').join(''));
+                fd[i].deathper1mpop = Number.isInteger(parseInt(fd[i].deathper1mpop.split(',').join(''))) ? parseInt(fd[i].deathper1mpop.split(',').join('')) : 0;
 
             if (fd[i].totaltests == '')
                 fd[i].totaltests = 0;
             else
-                fd[i].totaltests = parseInt(fd[i].totaltests.split(',').join(''));
+                fd[i].totaltests = Number.isInteger(parseInt(fd[i].totaltests.split(',').join(''))) ? parseInt(fd[i].totaltests.split(',').join('')) : 0;
 
             if (fd[i].testsper1mpop == '')
                 fd[i].testsper1mpop = 0;
             else
-                fd[i].testsper1mpop = parseInt(fd[i].testsper1mpop.split(',').join(''));
+                fd[i].testsper1mpop = Number.isInteger(parseInt(fd[i].testsper1mpop.split(',').join(''))) ? parseInt(fd[i].testsper1mpop.split(',').join('')) : 0;
 
             if (fd[i].population == '')
                 fd[i].population = 0;
             else
-                fd[i].population = parseInt(fd[i].population.split(',').join(''));
+                fd[i].population = Number.isInteger(parseInt(fd[i].population.split(',').join(''))) ? parseInt(fd[i].population.split(',').join('')) : 0;
 
             if (fd[i].continent == '')
                 fd[i].continent = 'null';
 
         }
-
-        for (var i = 0 ; i < fd.length;i++)
+        //console.log(fd);
+        for (var i = 0 ; i < fd.length ; i++)
         {
-            //number of mac connections in mysql was set 320 in order to handle number of rows
+            //number of max connections in mysql was set 320 in order to handle number of rows
             if (! (fd[i].country.includes('Total') || fd[i].country.includes('null'))) // do not include records of totals
             sqljson.queryinsert('raw',fd[i]);
         }
@@ -144,4 +146,6 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
 }).on("error", (err) => {
     console.log("Error: " + err.message);
 });
-
+    res.end();
+});
+module.exports = router;

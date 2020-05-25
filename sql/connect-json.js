@@ -34,7 +34,7 @@ function queryfetch(s){};
 function queryinsert(table,s){
     sqlJson.insert(table,s,function (err,response) {
         if (err)
-            log.log(err);
+            log.log('error 2565: ' + err);
         else
         {
             log.log(JSON.stringify(s));
