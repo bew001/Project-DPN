@@ -36,7 +36,22 @@ function open(){
         log.log("connection already open");
 
 }
-function queryfetch(s){};
+function queryfetch(s,res){
+    sql.query(s,function (err,records,fields) {
+        if (err)
+            console.log(err);
+        else
+            //console.log(records);
+        log.log(s);
+        var answer = {
+            result: 'OK',
+            records: records
+        }
+        res.json(answer);
+        res.end();
+
+    })
+};
 function queryinsert(s){};
 function querydelete(s){};
 function queryupate(s){};

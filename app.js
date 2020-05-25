@@ -1,14 +1,16 @@
 const express = require('express');
 const log = require('./logging/logg');
 const sql = require('./sql/connect');
-const getRawData = require('./data/getRawData')
+const bodyParser = require("body-parser");
+const getRawData = require('./data/getRawData');
+const listAction = require("./app/list.js"); //list of raw data
 
 const port = 3000;
-sql.open();
-sql.close();
+
 const router = express.Router();
-//router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.urlencoded({ extended: false }));
 router.use("/getRowdata", getRawData);
+router.use("/listAction", listAction);
 
 const app = express();
 app.use(express.static('public'));
