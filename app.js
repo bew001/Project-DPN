@@ -10,7 +10,7 @@ const port = 3000;
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use("/getRowdata", getRawData);
-router.use("/listAction", listAction);
+router.use("/listing", listAction);
 
 const app = express();
 app.use(express.static('public'));

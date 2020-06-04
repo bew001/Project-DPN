@@ -14,6 +14,7 @@ function clean( s ) {
     s = s.split('TotalDeaths').join('totaldeaths');
     s = s.split('NewDeaths').join('newdeaths');
     s = s.split('TotalRecovered').join('totalrecovered');
+    s = s.split('NewRecovered').join('newrecovered');
     s = s.split('ActiveCases').join('activecases');
     s = s.split('Serious,Critical').join('serious');
     s = s.split('Tot Cases/1M pop').join('totalcasesper1mpop');
@@ -23,6 +24,9 @@ function clean( s ) {
     s = s.split('Tests/\\n 1M pop').join('testsper1mpop'); //don't know why we need this in different manners
     s = s.split('Population').join('population');
     s = s.split('Continent').join('continent');
+    s = s.split('1 Caseevery X ppl').join('caseevery');
+    s = s.split('1 Deathevery X ppl').join('deathevery');
+    s = s.split('1 Testevery X ppl').join('testevery');
     s = s.split('[').join('');
     s = s.split(']').join('');
     s = s.split("\'\'").join('null');
@@ -33,8 +37,10 @@ return s ;
 }
 
 var data ='';
+let x = 1;
 
 router.get('/', function(req, res){
+
 https.get('https://www.worldometers.info/coronavirus/', (resp) => {
     //let data = '';
 
@@ -48,6 +54,7 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
         //console.log(data);
         const $ = cheerio.load(data);
         let resul = $('#main_table_countries_today').html();
+        ///console.log(resul);
         resul = '<table> ' + resul + ' </table>';
         //let ti = HtmlTableToJson.parse(resul).results;
         //let yi = JSON.stringify(HtmlTableToJson.parse(resul).results).toString();
@@ -56,6 +63,7 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
         //console.log(fd.length);
         //console.log(fd[1]);
         //console.log(fd);
+
         for (var i = 0;i < fd.length;i++)
         {
             // console.log(fd[i]);
@@ -92,6 +100,11 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
                 fd[i].totalrecovered = 0;
             else
                 fd[i].totalrecovered = Number.isInteger(parseInt(fd[i].totalrecovered.split(',').join(''))) ? parseInt(fd[i].totalrecovered.split(',').join('')) : 0;
+
+            if (fd[i].newrecovered == '')
+                fd[i].newrecovered = 0;
+            else
+                fd[i].newrecovered = Number.isInteger(parseInt(fd[i].newrecovered.split(',').join(''))) ? parseInt(fd[i].newrecovered.split(',').join('')) : 0;
 
             if (fd[i].activecases == '')
                 fd[i].activecases = 0;
@@ -131,13 +144,30 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
             if (fd[i].continent == '')
                 fd[i].continent = 'null';
 
+            if (fd[i].caseevery == '')
+                fd[i].caseevery = 0;
+            else
+                fd[i].caseevery = Number.isInteger(parseInt(fd[i].caseevery.split(',').join(''))) ? parseInt(fd[i].caseevery.split(',').join('')) : 0;
+
+            if (fd[i].deathevery == '')
+                fd[i].deathevery = 0;
+            else
+                fd[i].deathevery = Number.isInteger(parseInt(fd[i].deathevery.split(',').join(''))) ? parseInt(fd[i].deathevery.split(',').join('')) : 0;
+
+            if (fd[i].testevery == '')
+                fd[i].testevery = 0;
+            else
+                fd[i].testevery = Number.isInteger(parseInt(fd[i].testevery.split(',').join(''))) ? parseInt(fd[i].testevery.split(',').join('')) : 0;
+
+
         }
-        //console.log(fd);
+        console.log(fd);
         for (var i = 0 ; i < fd.length ; i++)
         {
             //number of max connections in mysql was set 320 in order to handle number of rows
             if (! (fd[i].country.includes('Total') || fd[i].country.includes('null'))) // do not include records of totals
             sqljson.queryinsert('raw',fd[i]);
+
         }
 
         // console.log(fd[0]);

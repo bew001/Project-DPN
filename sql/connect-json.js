@@ -32,14 +32,14 @@ function open(){
 }
 function queryfetch(s){};
 function queryinsert(table,s){
-    sqlJson.insert(table,s,function (err,response) {
+    sqlJson.insert(table,s,function (err,response,request) {
         if (err)
-            log.log('error 2565: ' + err);
+            log.log('error 2565: ' + err + request);
         else
         {
             log.log(JSON.stringify(s));
             log.log(JSON.stringify(response));
-            return response.insertId;
+            //return response.insertId;
         }
     })
 };

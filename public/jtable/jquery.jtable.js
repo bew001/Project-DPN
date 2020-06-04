@@ -52,7 +52,7 @@ THE SOFTWARE.
             jqueryuiTheme: false,
 
             ajaxSettings: {
-                type: 'POST',
+                type: 'GET',
                 dataType: 'json'
             },
 

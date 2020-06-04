@@ -1,9 +1,8 @@
 <!DOCTYPE html>
+<html dir="ltr" lang="en-US"><head>
+    <meta charset="utf-8">
+    <title>Main</title>
 
-<html>
-<head>
-    <title>jTable with nodejs</title>
-    <!-- jTable metro styles. -->
     <link href="css/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
     <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
 
@@ -14,11 +13,79 @@
     <!-- User defined Jtable js file -->
     <script src="jtable/jtableScript.js"></script>
 
+
+    <meta name="Corona Project" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
+
+
+    <link rel="stylesheet" href="style.css" media="screen">
+
+
+
 </head>
 <body>
-<div style="text-align: center;">
-    <h3>AJAX based CRUD operation with nodejs using jTable plugin</h3>
-    <div id="RawData"></div>
+<div id="dpn-main">
+    <div class="dpn-sheet clearfix">
+        <header class="dpn-header">
+
+            <div class="dpn-shapes">
+
+            </div>
+
+            <h1 class="dpn-headline">
+                <a href="/">CORONA METERS</a>
+            </h1>
+            <h2 class="dpn-slogan">Stay Safe ! Stay Home !</h2>
+
+
+
+
+        </header>
+        <nav class="dpn-nav">
+            <ul class="dpn-hmenu"><li><a href="index.html" class="active">Main</a></li><li><a href="find-a-car.html">News</a></li><li><a href="sell-your-car.html">Health Instructions</a></li><li><a href="car-reviews.html">Contact</a></li><li><a href="locations.html">Login/Signup</a></li></ul>
+        </nav>
+        <div class="dpn-layout">
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for countries..">
+            <script>
+                function myFunction() {
+                    // Declare variables
+                    console.log("gg");
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("RawData");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+
+            <div class="dpn-content" id="RawData">
+
+            </div>
+        </div>
+
+
+        <footer align = "center">
+            <p>Distributed Programming and Networking - Unicas - 2020</p>
+        </footer>
+
+
+
+    </div>
+
 </div>
-</body>
-</html>
+
+
+</body></html>

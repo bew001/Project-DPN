@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$('#RawData').jtable({
 		title : 'List Corona Raw Data',
 		actions : {
-			listAction : 'listAction',
+			listAction : 'listing',
 			createAction : 'createAction',
 			updateAction : 'updateAction',
 			deleteAction : 'deleteAction'
@@ -34,5 +34,7 @@ $(document).ready(function() {
 			// }
 		}
 	});
+
+
 	$('#RawData').jtable('load');
 });

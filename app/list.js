@@ -4,7 +4,7 @@ var  mysql = require('mysql');
 var sql = require('../sql/connect');
 
 
-router.post('/', function(req, res){
+router.get('/', function(req, res){
     console.log('/listAction');
 
     let answer = sql.queryfetch("select * from raw",res);
