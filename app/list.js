@@ -7,7 +7,7 @@ var sql = require('../sql/connect');
 router.get('/', function(req, res){
     console.log('/listAction');
 
-    let answer = sql.queryfetch("select * from raw",res);
+    let answer = sql.queryfetch("select country,max(totalcases) as totalcases from raw group by country",res);
     // console.log(answer);
     // if (answer.result == 'ok')
     // {

@@ -1537,3 +1537,10 @@
 2020-06-07 15:19:21: select * from raw
 2020-06-07 15:19:57: odbc connection created
 2020-06-07 15:20:4: select * from raw
+2020-06-07 15:44:21: select * from raw
+2020-06-07 15:50:2: odbc connection created
+2020-06-07 15:50:7: select country,max(totalcases) from raw group by country
+2020-06-07 15:51:1: odbc connection created
+2020-06-07 15:51:4: select country,max(totalcases) as totalcases from raw group by country
+2020-06-07 16:2:31: odbc connection created
+2020-06-07 16:2:35: select country,max(totalcases) as totalcases from raw group by country
