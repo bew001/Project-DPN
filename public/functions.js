@@ -1,16 +1,37 @@
 function model()
 {
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
             loadchart(JSON.parse(this.response));
         }
     };
     xhttp.open("GET", "model", true);
     xhttp.send();
+}
 
+function healthInstructions()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("dpn-layout").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "healthInstructions", true);
+    xhttp.send();
+}
+
+function contact()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("dpn-layout").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "contact", true);
+    xhttp.send();
 }
 
 function loadchart(s) {

@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const getRawData = require('./data/getRawData');
 const listAction = require("./app/list.js"); //list of raw data
 const modelling = require("./app/model.js"); //Modelling
+const healthInstructions = require("./app/healthInstructions.js"); //Health Instructions
+const contact = require("./app/contact.js"); //Contact
 
 const port = 3000;
 
@@ -13,6 +15,8 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use("/getRowdata", getRawData);
 router.use("/listing", listAction);
 router.use("/model", modelling);
+router.use("/healthInstructions", healthInstructions);
+router.use("/contact", contact);
 
 const app = express();
 app.use(express.static('public'));
