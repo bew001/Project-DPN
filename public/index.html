@@ -6,12 +6,34 @@
     <link href="css/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
     <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
 
+
+
+    <!-- for charts -->
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="jplot/excanvas.js"></script><![endif]-->
+
+    <script language="javascript" type="text/javascript" src="jplot/jquery.min.js"></script>
+    <script>
+        var jQuery1111 = jQuery.noConflict();
+        window.jQuery.ad = jQuery1111
+    </script>
+    <script language="javascript" type="text/javascript" src="jplot/jquery.jqplot.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jplot/jquery.jqplot.css" />
+    <script>
+        var jQuery1111 = jQuery.noConflict();
+        window.jQuery = jQuery1111
+    </script>
     <!-- jTable script file. -->
     <script src="jtable/jquery-2.2.3.js"></script>
     <script src="jtable/jquery-ui-1.10.3.custom.js"></script>
     <script src="jtable/jquery.jtable.js"></script>
+
+
     <!-- User defined Jtable js file -->
     <script src="jtable/jtableScript.js"></script>
+
+
+
+
 
 
     <meta name="Corona Project" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
@@ -41,9 +63,9 @@
 
         </header>
         <nav class="dpn-nav">
-            <ul class="dpn-hmenu"><li><a href="index.html" class="active">Main</a></li><li><a href="find-a-car.html">News</a></li><li><a href="sell-your-car.html">Health Instructions</a></li><li><a href="car-reviews.html">Contact</a></li><li><a href="locations.html">Login/Signup</a></li></ul>
+            <ul class="dpn-hmenu"><li><a href="index.html" class="active">Main</a></li><li><a href="javascript:void(0);" onclick="model();">Modelling</a></li><li><a href="sell-your-car.html">Health Instructions</a></li><li><a href="car-reviews.html">Contact</a></li><li><a href="locations.html">Login/Signup</a></li></ul>
         </nav>
-        <div class="dpn-layout">
+        <div class="dpn-layout" id="dpn-layout">
 
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for countries..">
             <script>
@@ -75,8 +97,23 @@
 
             </div>
         </div>
+        <script>function model()
+        {
 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
 
+                        loadchart(JSON.parse(this.response));
+                    }
+                };
+                xhttp.open("GET", "model", true);
+                xhttp.send();
+
+        }</script>
+<script>function loadchart(s) {
+    $.jqplot('RawData', s);
+}</script>
         <footer align = "center">
             <p>Distributed Programming and Networking - Unicas - 2020</p>
         </footer>
