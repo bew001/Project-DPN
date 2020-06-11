@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var dat = require('../logging/date')
 
 const https = require('https');
 const cheerio = require('cheerio');
@@ -53,7 +54,7 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
     resp.on('end', () => {
         //console.log(data);
         const $ = cheerio.load(data);
-        let resul = $('#main_table_countries_today').html();
+        let resul = $('#main_table_countries_yesterday').html();
         ///console.log(resul);
         resul = '<table> ' + resul + ' </table>';
         //let ti = HtmlTableToJson.parse(resul).results;
@@ -158,7 +159,9 @@ https.get('https://www.worldometers.info/coronavirus/', (resp) => {
                 fd[i].testevery = 0;
             else
                 fd[i].testevery = Number.isInteger(parseInt(fd[i].testevery.split(',').join(''))) ? parseInt(fd[i].testevery.split(',').join('')) : 0;
-
+            console.log(dat.addDay(-1));
+            //fd[i].data.add('date');
+            fd[i].date =   dat.addDay(-1) ;
 
         }
         console.log(fd);
