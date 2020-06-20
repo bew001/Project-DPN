@@ -1,5 +1,6 @@
+var resultArray='';
 function model()
-{console.log('hi');
+{
     var xhttp1 = new XMLHttpRequest();
     var countries;
     xhttp1.onreadystatechange = function() {
@@ -19,11 +20,18 @@ function model()
 
     content = content + "  </select>";
 
-    content = content + "<select name=\"sourceCountry\" id=\"p1\">\n"
+    content = content + "<select name=\"destinationCountry\" id=\"p2\">\n"
     for(var i =0;i<countries.records.length;i++)
     {
         content = content + "<option value=\"" + countries.records[i].country + "\">"+ countries.records[i].country + "</option>\n";
     }
+
+    content = content + "  </select>";
+
+
+    content = content + "<select name=\"optionToGroup\" id=\"p3\">\n"
+
+        content = content + "<option value=\"" + "day" + "\">"+ "By Day" + "</option>\n";
 
     content = content + "  </select>";
 
@@ -32,11 +40,42 @@ function model()
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            loadchart(JSON.parse(this.response));
+            resultArray = JSON.parse(this.response);
+
+            loadchart();
         }
     };
-    xhttp.open("GET", "model", true);
+    xhttp.open("GET", "model?p1=" + document.getElementById('p1').value +"&p2="+ document.getElementById('p2').value  + "&p3="+ document.getElementById('p3').value , false);
     xhttp.send();
+}
+
+
+
+function loadchart() {
+
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var arr = [['Task', 'Hours per Day']];
+        alert(arr);
+        for (let i = 0; i < resultArray.records[0].length ; i++)
+        {
+            arr.push([parseInt(resultArray.records[0][i].day),parseInt(resultArray.records[0][i].cases)]);
+            ;
+        }
+
+        var data = google.visualization.arrayToDataTable(
+            arr
+        );
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.LineChart(document.getElementById('RawData'));
+        chart.draw(data, options);
+    }
 }
 
 function healthInstructions()
@@ -62,28 +101,6 @@ function contact()
     xhttp.open("GET", "contact", true);
     xhttp.send();
 }
-
-function loadchart(s) {
-    // Load google charts
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart(s) {
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            [1, 8],
-            [2, 2],
-            [3, 4],
-            [4, 2],
-            [5, 8]
-        ]);
-
-        // Optional; add a title and set the width and height of the chart
-        var options = {'title':'My Average Day', 'width':550, 'height':400};
-
-        // Display the chart inside the <div> element with id="piechart"
-        var chart = new google.visualization.LineChart(document.getElementById('RawData'));
-        chart.draw(data, options);
-    }}
 
 function Filter() {
     // Declare variables

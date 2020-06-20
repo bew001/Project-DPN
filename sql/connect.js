@@ -10,7 +10,8 @@ function createDBConnection(){
         host: "localhost",
         user: "root",
         password: "",
-        database: "coronadata"
+        database: "coronadata",
+        multipleStatements: true
     });
     log.log('odbc connection created');
     return out;
@@ -47,6 +48,7 @@ function queryfetch(s,res){
             result: 'OK',
             records: records
         }
+        console.log(records);
         res.json(answer);
         res.end();
 
