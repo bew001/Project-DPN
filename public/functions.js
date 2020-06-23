@@ -1,6 +1,5 @@
 var resultArray='';
-function model()
-{
+function model() {
     var xhttp1 = new XMLHttpRequest();
     var countries;
     xhttp1.onreadystatechange = function() {
@@ -49,8 +48,6 @@ function model()
     xhttp.send();
 }
 
-
-
 function loadchart() {
 
     // Load google charts
@@ -58,7 +55,7 @@ function loadchart() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var arr = [['Task', 'Hours per Day']];
-        alert(arr);
+
         for (let i = 0; i < resultArray.records[0].length ; i++)
         {
             arr.push([parseInt(resultArray.records[0][i].day),parseInt(resultArray.records[0][i].cases)]);
@@ -78,8 +75,7 @@ function loadchart() {
     }
 }
 
-function healthInstructions()
-{
+function healthInstructions() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -90,8 +86,7 @@ function healthInstructions()
     xhttp.send();
 }
 
-function contact()
-{
+function contact() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -124,3 +119,293 @@ function Filter() {
         }
     }
 }
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
+function loggedin() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+                let email = this.responseText;
+            if (email ==='')
+            {
+                document.write("<button class=\"open-button\" onclick=\"openForm()\">Login Form</button>");
+                setFormdiv('login');
+
+            }
+
+            else
+            {
+                document.write("<button class=\"modify-button\" onclick=\"openForm()\">" + email + " </button>");
+                setFormdiv('modify');
+            }
+
+
+        }
+    };
+    xhttp.open("POST", "sess", false);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("p1=get");
+}
+
+function signout() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            let statusSignOut = this.responseText;
+            if (statusSignOut ==='success')
+            {
+                //document.write("<button class=\"open-button\" onclick=\"openForm()\">Login Form</button>");
+                setFormdiv('login');
+                sessionStorage.setItem("loggedin", "false");
+                location.reload();
+            }
+
+            else
+            {
+                //document.write("<button class=\"modify-button\" onclick=\"openForm()\">" + email + " </button>");
+                setFormdiv('modify');
+                location.reload();
+            }
+
+
+        }
+    };
+    xhttp.open("POST", "sess", false);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("p1=unset");
+}
+
+function setFormdiv(l){
+    let s = '';
+    if (l==='login')
+    {
+         s = "<div id=\"loader\"></div>\n" +
+             "\n" +
+             "\n" +
+             "        <form  class=\"form-container\" id = \"form-container\">\n" +
+             "            <h1>Login</h1>\n" +
+             "\n" +
+             "            <label for=\"email\"><b>Email</b></label>\n" +
+             "            <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required >\n" +
+             "\n" +
+             "            <label for=\"psw\"><b>Password</b></label>\n" +
+             "            <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required >\n" +
+             "\n" +
+             "            <button type=\"button\" onclick=\"login(email,psw)\" class=\"btn\">Login</button>\n" +
+             "            <button type=\"button\" class=\"btn cancel\" onclick=\"closeForm()\">Close</button>\n" +
+             "\n" +
+             "        </form>";
+
+    }
+    else if (l==='modify')
+    {
+         s = "<div id=\"loader\"></div>\n" +
+             "\n" +
+             "\n" +
+             "        <form  class=\"form-container\" id = \"form-container\">\n" +
+             "            <h1>Modify Password</h1>\n" +
+             "\n" +
+             "            <label for=\"email\"><b>Email</b></label>\n" +
+             "            <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required>\n" +
+             "\n" +
+             "            <label for=\"psw\"><b>Password</b></label>\n" +
+             "            <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
+             "\n" +
+             "            <button type=\"button\" onclick=\"modify(email,psw)\" class=\"btn\">Modify</button>\n" +
+             "            <button type=\"button\" class=\"btn cancel\" onclick=\"closeForm()\">Close</button>\n" +
+             "\n" +
+             "        </form>";
+    }
+    else if (l==='signup')
+    {
+        s = "<div id=\"loader\"></div>\n" +
+            "\n" +
+            "\n" +
+            "        <form  class=\"form-container\" id = \"form-container\">\n" +
+            "            <h1>Sign up</h1>\n" +
+            "\n" +
+            "            <label for=\"email\"><b>Email</b></label>\n" +
+            "            <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required>\n" +
+            "\n" +
+            "            <label for=\"psw\"><b>Password</b></label>\n" +
+            "            <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
+            "\n" +
+            "            <button type=\"button\" onclick=\"signup(email,psw)\" class=\"btn\">Signup</button>\n" +
+            "            <button type=\"button\" class=\"btn cancel\" onclick=\"closeForm()\">Close</button>\n" +
+            "\n" +
+            "        </form>";
+    }
+
+    document.getElementById("myForm").innerHTML = s;
+
+}
+
+function  signup( email,psw) {
+    if(email=='' || psw =='')
+    {
+        alert ('Please fill all required fileds');
+        return;
+    }
+    showLoader();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            if (this.responseText==='success')
+            {
+                hideLoader();
+                closeForm();
+                alert('Please Check your Email for Verification');
+                location.reload();
+                /*var xhttp1 = new XMLHttpRequest();
+                xhttp1.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                        if (this.responseText==='success')
+                        {
+                            //loggedin();
+                            hideLoader();
+                            closeForm();
+                            alert('user created');
+                            location.reload();
+                        }
+
+                    }
+                };
+                xhttp1.open("POST", "sess", false);
+                xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp1.send("p1=set&p2=" + email.value + "");*/
+            }
+            else
+            {
+                hideLoader();
+                closeForm();
+               alert('Failed to create user');
+
+            }
+
+        }
+    };
+    xhttp.open("POST", "userlogin", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("p1=signup&p2=" + email.value +"&p3="+ psw.value );
+}
+
+function  modify( email,psw) {
+    if(email=='' || psw =='')
+    {
+        alert ('Please fill all required fileds');
+        return;
+    }
+    showLoader();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            if (this.responseText==='success')
+            {
+                //loggedin();
+                hideLoader();
+                closeForm();
+                alert('Password Changed');
+            }
+            else
+            {
+                hideLoader();
+                closeForm();
+                alert('Failed to Change Password');
+
+            }
+
+        }
+    };
+    xhttp.open("POST", "userlogin", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("p1=modify&p2=" + email.value +"&p3="+ psw.value );
+}
+
+function  login( email,psw) {
+    if(email=='' || psw =='')
+    {
+        alert ('Please fill all required fileds');
+        return;
+    }
+    showLoader();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            if (this.responseText==='success')
+            {
+                var xhttp1 = new XMLHttpRequest();
+                xhttp1.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                        if (this.responseText==='success')
+                        {
+                            //loggedin();
+                            hideLoader();
+                            closeForm();
+                            sessionStorage.setItem("loggedin", "true");
+                            location.reload();
+                        }
+
+                    }
+                };
+                xhttp1.open("POST", "sess", false);
+                xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp1.send("p1=set&p2=" + email.value + "");
+            }
+            else
+            {
+                hideLoader();
+                closeForm();
+                alert('Failed to login');
+
+            }
+
+        }
+    };
+    xhttp.open("POST", "userlogin", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("p1=login&p2=" + email.value +"&p3="+ psw.value );
+}
+
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+
+}
+
+function hideLoader() {
+    document.getElementById("loader").style.display = "none";
+
+}
+
+function openSignupForm() {
+   setFormdiv('signup');
+   openForm();
+
+}
+
+function setSignoutbtn() {
+
+    if (sessionStorage.getItem("loggedin")==="true")
+    {
+        document.write( "<a href=\"javascript:void(0);\" onclick=\"signout();\">Sign out</a>");
+    }
+    else
+    {
+        document.write( "<a href=\"javascript:void(0);\" onclick=\"openSignupForm();\">Sign up</a>");
+    }
+
+}
+

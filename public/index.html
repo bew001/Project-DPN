@@ -43,7 +43,20 @@
 </head>
 <body>
 
+
 <div id="dpn-main">
+
+
+
+
+
+
+    <div class="form-popup" id="myForm">
+
+    </div>
+    <script>
+        loggedin();
+    </script>
     <div class="dpn-sheet clearfix">
         <header class="dpn-header">
 
@@ -64,7 +77,7 @@
             <ul class="dpn-hmenu"><li><a href="/" class="active">Main</a></li><li><a href="javascript:void(0);" onclick="model();">Modelling</a></li>
                 <li><a href="javascript:void(0);" onclick="healthInstructions();">Health Instructions</a></li>
                 <li><a href="javascript:void(0);" onclick="contact();">Contact</a></li>
-                <li><a href="locations.html">Login/Signup</a></li></ul>
+                <li><script>setSignoutbtn();</script></li></ul>
         </nav>
 
         <div class="dpn-layout" id="dpn-layout">

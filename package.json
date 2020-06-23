@@ -10,13 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "chart.js": "^2.9.3",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "flot": "^4.2.1",
     "html-table-to-json": "^1.0.0",
     "jtable": "^2.6.0",
     "mysql": "^2.18.1",
-    "mysql-json": "^0.1.3"
+    "mysql-json": "^0.1.3",
+    "nodemailer": "^6.4.10",
+    "uuid": "^8.1.0"
   }
 }

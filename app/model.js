@@ -15,7 +15,7 @@ var totalWeight = 9;
 
 router.get('/', function(req, res){
     console.log('/modeling');
-
+    //p1 is the source country , p2 destination country , p3 is the grouping method
     let q='call model(\''+req.query.p1+'\',\''+req.query.p2+'\','+ healthcareWeight +','+ageWeight +',' +
         ''+socialWeight +','+testsWeight +','+transitWeight +','+totalWeight +');';
 

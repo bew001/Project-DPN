@@ -48,14 +48,68 @@ function queryfetch(s,res){
             result: 'OK',
             records: records
         }
-        console.log(records);
+        //console.log(records);
         res.json(answer);
         res.end();
 
     })
 };
-function queryinsert(s){};
-function querydelete(s){};
-function queryupate(s){};
+function queryinsert(s,res,f){
+    sql.query(s,function (err,records,fields) {
+        if (err){
+            console.log(err);
+            if (res!==undefined)
+            res.send('fail');
 
-module.exports = {sql,open,close,queryfetch,queryinsert,querydelete,queryupate}
+        }
+        else {
+            console.log('success insert');
+            log.log(s);
+            if(res!==undefined)
+            res.send('success');
+            if(f!==undefined)
+                f();
+        }
+
+    })
+};
+
+function querydelete(s){};
+function queryupdate(s,res,redirect){
+    sql.query(s,function (err,records,fields) {
+        if (err){
+            console.log(err);
+            if(res!==undefined)
+            res.send('fail');
+
+        }
+        else {
+
+            log.log(s);
+            if(res!==undefined)
+                if(redirect!==undefined && redirect)
+                    res.redirect('/');
+                else
+                    res.send('success');
+        }
+
+    })
+};
+
+function queryselect(s,res){
+    sql.query(s,function (err,records,fields) {
+        if (records.length < 1){
+            if (res!==undefined)
+            res.send('fail');
+
+        }
+        else {
+
+            log.log(s);
+            if (res!==undefined)
+            res.send('success');
+        }
+
+    })
+};
+module.exports = {sql,open,close,queryfetch,queryinsert,querydelete,queryupdate,queryselect}
