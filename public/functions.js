@@ -1,5 +1,10 @@
 //var resultArray='';
 function model() {
+    if (sessionStorage.getItem("loggedin")!=="true")
+    {
+        alert("Please either Log in or sign up for a new account in order to use this feature");
+        return;
+    }
     setMenuActiveClass("MenuModel");
     var xhttp1 = new XMLHttpRequest();
     var countries;

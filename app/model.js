@@ -16,6 +16,7 @@ var totalWeight = 9;
 router.get('/', function(req, res){
     console.log('/modeling');
     console.log(req.query.method);
+    sql.queryinsert('insert into selections (email,p1,p2) values (\'' +req.session.email + '\',\''+ req.query.p1 + '\',\'' + req.query.p2 + '\');');
     if (req.query.method==='model') {
         //p1 is the source country , p2 destination country , p3 is the grouping method
         let q1 = 'call model(\'' + req.query.p1 + '\',\'' + req.query.p2 + '\',' + healthcareWeight + ',' + ageWeight + ',' +
