@@ -754,3 +754,24 @@
 2020-06-25 5:44:14: call compare('France','Lebanon');
 2020-06-25 5:44:57: call model('France','Lebanon',3,1,2,1,2,9);
 2020-06-25 5:45:9: call model('France','France',3,1,2,1,2,9);
+2020-06-25 12:46:55: odbc connection created
+2020-06-25 12:47:2: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 12:47:7: select country from parameters group by country
+2020-06-25 12:47:27: odbc connection created
+2020-06-25 12:47:30: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 12:47:45: insert into credentials (email,password) values ('at-ms4@hotmail.com','123');
+2020-06-25 12:47:45: insert into verification (email,uuid) values ('at-ms4@hotmail.com','4eb28017-afff-4699-a041-c7efecc82ec0');
+2020-06-25 12:47:47: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 12:53:27: insert into verification (email,uuid) values ('at-ms4@hotmail.com','67431b35-6a16-479f-a3db-f55e3929f3f2');
+2020-06-25 12:54:17: update credentials inner join verification on credentials.email = verification.email set verified = 1 where credentials.email='at-ms4@hotmail.com' and uuid='67431b35-6a16-479f-a3db-f55e3929f3f2';
+2020-06-25 12:54:22: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 12:54:32: select id from credentials where password = '123' and email = 'at-ms4@hotmail.com' and verified=1;
+2020-06-25 12:54:32: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 12:54:39: select country from parameters group by country
+2020-06-25 12:54:45: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','France','France');
+2020-06-25 12:54:45: call model('France','France',3,1,2,1,2,9);
+2020-06-25 12:54:50: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','France','Italy');
+2020-06-25 12:54:50: call compare('France','Italy');
+2020-06-25 12:57:54: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 13:25:31: odbc connection created
+2020-06-25 13:25:34: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc

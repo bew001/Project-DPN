@@ -486,3 +486,118 @@
 2020-06-24 0:53:5: select country,max(totalcases) as totalcases from raw group by country
 2020-06-24 0:53:47: update credentials inner join verification on credentials.email = verification.email set verified = 1 where credentials.email='at-ms@hotmail.com' and uuid='1533ba4e-b462-4010-8460-d935b91fd591';
 2020-06-24 0:53:47: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 19:59:51: odbc connection created
+2020-06-24 19:59:59: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:17:14: odbc connection created
+2020-06-24 20:17:20: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:17:37: select country from parameters group by country
+2020-06-24 20:17:37: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-06-24 20:17:42: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:28:1: odbc connection created
+2020-06-24 20:28:5: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:28:31: odbc connection created
+2020-06-24 20:28:34: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:28:37: select country from parameters group by country
+2020-06-24 20:28:37: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-06-24 20:28:40: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:30:4: odbc connection created
+2020-06-24 20:30:7: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:30:10: select country from parameters group by country
+2020-06-24 20:30:10: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-06-24 20:30:12: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:30:17: select country from parameters group by country
+2020-06-24 20:30:17: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-06-24 20:32:24: odbc connection created
+2020-06-24 20:32:32: odbc connection created
+2020-06-24 20:32:35: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:32:37: select country from parameters group by country
+2020-06-24 20:32:37: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-06-24 20:43:54: odbc connection created
+2020-06-24 20:44:2: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:44:3: select country from parameters group by country
+2020-06-24 20:44:5: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-06-24 20:44:16: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:44:17: select country from parameters group by country
+2020-06-24 20:44:19: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:44:20: select country from parameters group by country
+2020-06-24 20:44:53: odbc connection created
+2020-06-24 20:44:55: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:44:56: select country from parameters group by country
+2020-06-24 20:45:29: odbc connection created
+2020-06-24 20:45:31: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:45:32: select country from parameters group by country
+2020-06-24 20:46:36: odbc connection created
+2020-06-24 20:46:39: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 20:46:41: select country from parameters group by country
+2020-06-24 20:47:41: odbc connection created
+2020-06-24 21:4:23: odbc connection created
+2020-06-24 21:4:31: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:4:32: select country from parameters group by country
+2020-06-24 21:4:38: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:6:6: call model('Lebanon','France',3,1,2,1,2,9);
+2020-06-24 21:6:19: call model('France','Lebanon',3,1,2,1,2,9);
+2020-06-24 21:12:11: odbc connection created
+2020-06-24 21:12:15: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:12:17: select country from parameters group by country
+2020-06-24 21:12:18: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:12:55: odbc connection created
+2020-06-24 21:13:1: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:13:2: select country from parameters group by country
+2020-06-24 21:13:2: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:13:50: odbc connection created
+2020-06-24 21:13:52: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:13:53: select country from parameters group by country
+2020-06-24 21:13:54: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:14:25: odbc connection created
+2020-06-24 21:14:28: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:14:29: select country from parameters group by country
+2020-06-24 21:14:30: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:17:32: odbc connection created
+2020-06-24 21:17:35: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:17:36: select country from parameters group by country
+2020-06-24 21:17:37: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:17:39: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:18:42: odbc connection created
+2020-06-24 21:18:45: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:18:46: select country from parameters group by country
+2020-06-24 21:18:47: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:20:27: odbc connection created
+2020-06-24 21:20:29: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:20:31: select country from parameters group by country
+2020-06-24 21:20:31: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:20:49: odbc connection created
+2020-06-24 21:20:51: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:20:52: select country from parameters group by country
+2020-06-24 21:20:53: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:26:3: odbc connection created
+2020-06-24 21:26:6: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:26:7: select country from parameters group by country
+2020-06-24 21:26:8: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:52:31: odbc connection created
+2020-06-24 21:52:35: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:52:40: select country from parameters group by country
+2020-06-24 21:52:42: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:53:21: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:54:14: odbc connection created
+2020-06-24 21:54:17: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:54:22: select country from parameters group by country
+2020-06-24 21:54:23: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:56:4: odbc connection created
+2020-06-24 21:56:7: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:56:8: select country from parameters group by country
+2020-06-24 21:56:10: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:56:55: odbc connection created
+2020-06-24 21:56:57: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:56:58: select country from parameters group by country
+2020-06-24 21:56:59: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:58:33: odbc connection created
+2020-06-24 21:58:39: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:58:40: select country from parameters group by country
+2020-06-24 21:58:42: call model('France','France',3,1,2,1,2,9);
+2020-06-24 21:59:40: odbc connection created
+2020-06-24 21:59:45: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:59:46: select country from parameters group by country
+2020-06-24 21:59:50: odbc connection created
+2020-06-24 21:59:52: select country,max(totalcases) as totalcases from raw group by country
+2020-06-24 21:59:53: select country from parameters group by country
+2020-06-24 21:59:55: call model('France','France',3,1,2,1,2,9);

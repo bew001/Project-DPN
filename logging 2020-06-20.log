@@ -454,3 +454,53 @@
 2020-06-20 22:7:41: select country from parameters group by country
 2020-06-20 22:7:41: call model('Lebanon','Lebanon',3,1,2,1,2,9);
 2020-06-20 22:10:9: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:16:52: odbc connection created
+2020-06-20 22:16:57: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:17:25: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:17:56: odbc connection created
+2020-06-20 22:17:59: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:25:49: odbc connection created
+2020-06-20 22:25:52: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:27:27: odbc connection created
+2020-06-20 22:27:30: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:28:24: odbc connection created
+2020-06-20 22:28:27: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:35:29: odbc connection created
+2020-06-20 22:35:32: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:35:57: odbc connection created
+2020-06-20 22:36:0: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:36:57: odbc connection created
+2020-06-20 22:37:0: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 22:37:15: odbc connection created
+2020-06-20 22:37:18: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:0:1: odbc connection created
+2020-06-20 23:4:16: odbc connection created
+2020-06-20 23:4:22: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:4:56: odbc connection created
+2020-06-20 23:4:57: odbc connection created
+2020-06-20 23:5:1: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:15:27: odbc connection created
+2020-06-20 23:15:32: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:15:43: odbc connection created
+2020-06-20 23:15:47: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:21:29: odbc connection created
+2020-06-20 23:21:32: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:21:48: odbc connection created
+2020-06-20 23:21:51: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:22:8: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:23:4: odbc connection created
+2020-06-20 23:23:7: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:27:16: odbc connection created
+2020-06-20 23:27:24: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:27:42: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:27:44: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:28:10: odbc connection created
+2020-06-20 23:28:14: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:28:28: odbc connection created
+2020-06-20 23:28:31: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:35:26: odbc connection created
+2020-06-20 23:35:30: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:36:13: odbc connection created
+2020-06-20 23:36:16: select country,max(totalcases) as totalcases from raw group by country
+2020-06-20 23:36:31: odbc connection created
+2020-06-20 23:36:36: select country,max(totalcases) as totalcases from raw group by country
