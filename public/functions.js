@@ -1,12 +1,12 @@
-var resultArray='';
+//var resultArray='';
 function model() {
+    setMenuActiveClass("MenuModel");
     var xhttp1 = new XMLHttpRequest();
     var countries;
     xhttp1.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log('hi2');
              countries = JSON.parse(this.response);
-
         }
     };
     xhttp1.open("GET", "getCountryModel", false); // async false here is important in order not to load charts with unknown parameters
@@ -32,29 +32,41 @@ function model() {
 
         content = content + "<option value=\"" + "day" + "\">"+ "By Day" + "</option>\n";
 
-    content = content + "  </select>";
+    content = content + "  </select>\n";
+
+    content = content + "<button onclick=\"loadModel('model')\">Model</button>\n";
+
+    content = content + "<button onclick=\"loadModel('compare',p1.value,p2.value)\">Compare</button>\n";
 
     content = content + "<div id=\"RawData\" class=\"dpn-content\"> <\div>"
     document.getElementById('dpn-layout').innerHTML = content;
+
+}
+
+function loadModel(method,sc,dc) {
+    showLoaderBig();
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            resultArray = JSON.parse(this.response);
 
-            loadchart();
+            if (method==='model')
+                loadchart1(JSON.parse(this.response));
+            else if (method==='compare')
+                loadchart2(JSON.parse(this.response),sc,dc);
+            hideLoaderBig()
         }
     };
-    xhttp.open("GET", "model?p1=" + document.getElementById('p1').value +"&p2="+ document.getElementById('p2').value  + "&p3="+ document.getElementById('p3').value , false);
+    xhttp.open("GET", "model?method=" +  method + "&p1=" + document.getElementById('p1').value +"&p2="+ document.getElementById('p2').value  + "&p3="+ document.getElementById('p3').value , false);
     xhttp.send();
 }
 
-function loadchart() {
+function loadchart1(resultArray) {
 
     // Load google charts
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-        var arr = [['Task', 'Hours per Day']];
+        var arr = [['Cases', 'Cases per Day']];
 
         for (let i = 0; i < resultArray.records[0].length ; i++)
         {
@@ -62,12 +74,43 @@ function loadchart() {
             ;
         }
 
+        //arr = [['Cases', 'Cases per Day','l'],[1,2,7],[2,10,8],[3,7,1],[4,9,8]];
+
         var data = google.visualization.arrayToDataTable(
             arr
         );
 
         // Optional; add a title and set the width and height of the chart
-        var options = {'title':'My Average Day', 'width':550, 'height':400};
+        var options = {'title':'Cases per Day', 'width':750, 'height':550,};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.LineChart(document.getElementById('RawData'));
+        chart.draw(data, options);
+    }
+}
+
+function loadchart2(resultArray,sc,dc) {
+
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var arr = [['Cases', sc,dc]];
+
+        for (let i = 0; i < resultArray.records[0].length ; i++)
+        {
+            arr.push([parseInt(resultArray.records[0][i].day),parseInt(resultArray.records[0][i].cases1),parseInt(resultArray.records[0][i].cases2)]);
+            ;
+        }
+
+        //arr = [['Cases', 'Cases per Day','l'],[1,2,7],[2,10,8],[3,7,1],[4,9,8]];
+
+        var data = google.visualization.arrayToDataTable(
+            arr
+        );
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Cases per Day', 'width':750, 'height':550,};
 
         // Display the chart inside the <div> element with id="piechart"
         var chart = new google.visualization.LineChart(document.getElementById('RawData'));
@@ -76,6 +119,7 @@ function loadchart() {
 }
 
 function healthInstructions() {
+    setMenuActiveClass("MenuHealth");
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -87,6 +131,7 @@ function healthInstructions() {
 }
 
 function contact() {
+    setMenuActiveClass("MenuHealth");
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -99,16 +144,41 @@ function contact() {
 
 function Filter() {
     // Declare variables
-    console.log("gg");
+
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     table = document.getElementById("RawData");
     tr = table.getElementsByTagName("tr");
 
+
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+function FilterContinent() {
+    // Declare variables
+
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInputContinent");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("RawData");
+    tr = table.getElementsByTagName("tr");
+
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[4];
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -390,6 +460,16 @@ function hideLoader() {
 
 }
 
+function showLoaderBig() {
+    document.getElementById("loaderBig").style.display = "block";
+
+}
+
+function hideLoaderBig() {
+    document.getElementById("loaderBig").style.display = "none";
+
+}
+
 function openSignupForm() {
    setFormdiv('signup');
    openForm();
@@ -409,3 +489,13 @@ function setSignoutbtn() {
 
 }
 
+function setMenuActiveClass(tab){
+    document.getElementById("MenuMain").className = "";
+    document.getElementById("MenuModel").className = "";
+    document.getElementById("MenuHealth").className = "";
+    document.getElementById("MenuContact").className = "";
+    if (tab===undefined)
+        document.getElementById("MenuMain").className = "active";
+        else
+            document.getElementById(tab).className = "active";
+}

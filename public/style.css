@@ -29,7 +29,10 @@ h1, h2, h3, h4, h5, h6, p, a, ul, ol, li
  */
 
 
+.dpn-content {
 
+
+}
 
 
 
@@ -718,6 +721,25 @@ ul.dpn-hmenu ul
    right: 15px;
    display: none;
 }
+#loaderBig {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   z-index: 1;
+   width: 150px;
+   height: 150px;
+   margin: -75px 0 0 -75px;
+   border: 16px solid #f3f3f3;
+   border-radius: 50%;
+   border-top: 16px solid #3498db;
+   width: 120px;
+   height: 120px;
+   -webkit-animation: spin 2s linear infinite;
+   animation: spin 2s linear infinite;
+
+   right: 15px;
+   display: none;
+}
 
 @-webkit-keyframes spin {
    0% { -webkit-transform: rotate(0deg); }
@@ -748,3 +770,4 @@ ul.dpn-hmenu ul
    to{ bottom:0; opacity:1 }
 }
 
+.RawData

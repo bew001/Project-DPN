@@ -44,10 +44,10 @@
 <body>
 
 
-<div id="dpn-main">
+<div id="dpn-main" >
 
 
-
+    <div id = "loaderBig"></div>
 
 
 
@@ -58,6 +58,7 @@
         loggedin();
     </script>
     <div class="dpn-sheet clearfix">
+
         <header class="dpn-header">
 
             <div class="dpn-shapes">
@@ -74,15 +75,19 @@
 
         </header>
         <nav class="dpn-nav">
-            <ul class="dpn-hmenu"><li><a href="/" class="active">Main</a></li><li><a href="javascript:void(0);" onclick="model();">Modelling</a></li>
-                <li><a href="javascript:void(0);" onclick="healthInstructions();">Health Instructions</a></li>
-                <li><a href="javascript:void(0);" onclick="contact();">Contact</a></li>
+            <ul class="dpn-hmenu"><li><a class="active" onclick="setMenuActiveClass();" href="/" id="MenuMain">Main</a></li><li><a href="javascript:void(0);" onclick="model();" id="MenuModel">Modelling</a></li>
+                <li><a href="javascript:void(0);" onclick="healthInstructions();" id="MenuHealth">Health Instructions</a></li>
+                <li><a href="javascript:void(0);" onclick="contact();" id="MenuContact">Contact</a></li>
                 <li><script>setSignoutbtn();</script></li></ul>
         </nav>
 
         <div class="dpn-layout" id="dpn-layout">
 
             <input type="text" id="myInput" onkeyup="Filter()" placeholder="Search for countries..">
+
+            <input type="text" id="myInputContinent" onkeyup="FilterContinent()" placeholder="Filter Continents..">
+
+
 
 
             <div class="dpn-content" id="RawData">
