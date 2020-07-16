@@ -21,17 +21,13 @@ router.get('/', function(req, res){
     }
 
     today = yyyy+'-'+mm+'-'+dd;
+    today = '2020-07-15'; //this value is set for the date sent to professor because when sending this his database won't update
     console.log("select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths," +
         " continent from raw where raw.rank>0 and DATE_FORMAT(date, \"%Y-%m-%d\") = " + today + " group by country order by totalcases desc");
     console.log(today);
     let answer = sql.queryfetch("select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths," +
         " continent from raw where rank>0 and DATE_FORMAT(date, \"%Y-%m-%d\") = \"" + today + "\" group by country order by totalcases desc",res);
-    // console.log(answer);
-    // if (answer.result == 'ok')
-    // {
-    //     res.json(answer);
-    //     res.end();
-    // }
+
 
 
     });

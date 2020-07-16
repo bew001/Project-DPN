@@ -83,12 +83,14 @@
 
         <div class="dpn-layout" id="dpn-layout">
 
-            <input type="text" id="myInput" onkeyup="Filter()" placeholder="Search for countries..">
+            <table border="0" width="100%" style="left: 10%"><th>
+            <input type="text" id="myInput" onkeyup="Filter()" placeholder="Search for countries.." style="border-radius: 10px;vertical-align: center" >
+            </th>
+                <th align="right">
 
-            <input type="text" id="myInputContinent" onkeyup="FilterContinent()" placeholder="Filter Continents..">
-
-
-
+            <input type="text" id="myInputContinent" onkeyup="FilterContinent()" placeholder="Filter Continents.." style="border-radius: 10px;">
+                </th>
+            </table>
 
             <div class="dpn-content" id="RawData">
 

@@ -48,7 +48,7 @@ function queryfetch(s,res){
             result: 'OK',
             records: records
         }
-        //console.log(records);
+        console.log(records);
         res.json(answer);
         res.end();
 

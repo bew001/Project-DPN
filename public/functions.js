@@ -1,4 +1,4 @@
-//var resultArray='';
+
 function model() {
     if (sessionStorage.getItem("loggedin")!=="true")
     {
@@ -16,34 +16,38 @@ function model() {
     };
     xhttp1.open("GET", "getCountryModel", false); // async false here is important in order not to load charts with unknown parameters
     xhttp1.send();
-    let content = "<select name=\"sourceCountry\" id=\"p1\">\n"
+
+    let content="";
+    content = content + "<table border=\"0\" width=\"60%\" align = \"center\" ><th>";
+    content = content + "<select name=\"sourceCountry\" id=\"p1\" style=\"border-radius: 10px;width:100px;\" >&nbsp&nbsp\n"
     for(var i =0;i<countries.records.length;i++)
     {
         content = content + "<option value=\"" + countries.records[i].country + "\">"+ countries.records[i].country + "</option>\n";
     }
 
-    content = content + "  </select>";
+    content = content + "  </select> </th>";
 
-    content = content + "<select name=\"destinationCountry\" id=\"p2\">\n"
+    content = content + "</th><th><select name=\"destinationCountry\" id=\"p2\" style=\"border-radius: 10px;width:100px;\">&nbsp&nbsp\n"
     for(var i =0;i<countries.records.length;i++)
     {
         content = content + "<option value=\"" + countries.records[i].country + "\">"+ countries.records[i].country + "</option>\n";
     }
 
-    content = content + "  </select>";
+    content = content + "  </select></th><th>";
 
 
-    content = content + "<select name=\"optionToGroup\" id=\"p3\">\n"
+    content = content + "<select name=\"optionToGroup\" id=\"p3\" style=\"border-radius: 10px;width:100px;\">&nbsp&nbsp\n"
 
-        content = content + "<option value=\"" + "day" + "\">"+ "By Day" + "</option>\n";
+    content = content + "<option value=\"" + "day" + "\">"+ "By Day" + "</option>\n";
 
-    content = content + "  </select>\n";
+    content = content + "  </select></th><th>---------\n";
 
-    content = content + "<button onclick=\"loadModel('model')\">Model</button>\n";
+    content = content + "</th><th><button onclick=\"loadModel('model')\" style=\"border-radius: 10px;width:100px;\">Model</button>\n";
 
-    content = content + "<button onclick=\"loadModel('compare',p1.value,p2.value)\">Compare</button>\n";
+    content = content + "</th><th><button onclick=\"loadModel('compare',p1.value,p2.value)\" style=\"border-radius: 10px;width:100px;\">Compare</button></th>" +
+        "<tr style=\"color:beige;;\"><td>&nbsp&nbsp Country</td><td>&nbsp&nbspTarget Country</td><td>&nbsp&nbspGrouping Method</td><td></td><td></td><td></td></tr></table><br>\n";
 
-    content = content + "<div id=\"RawData\" class=\"dpn-content\"> <\div>"
+    content = content + "<div id=\"RawData\" class=\"dpn-content\" align='center'> <\div>"
     document.getElementById('dpn-layout').innerHTML = content;
 
 }
@@ -75,8 +79,8 @@ function loadchart1(resultArray) {
 
         for (let i = 0; i < resultArray.records[0].length ; i++)
         {
-            arr.push([parseInt(resultArray.records[0][i].day),parseInt(resultArray.records[0][i].cases)]);
-            ;
+            arr.push([resultArray.records[0][i].day,parseInt(resultArray.records[0][i].cases)]);
+
         }
 
         //arr = [['Cases', 'Cases per Day','l'],[1,2,7],[2,10,8],[3,7,1],[4,9,8]];
@@ -104,7 +108,7 @@ function loadchart2(resultArray,sc,dc) {
 
         for (let i = 0; i < resultArray.records[0].length ; i++)
         {
-            arr.push([parseInt(resultArray.records[0][i].day),parseInt(resultArray.records[0][i].cases1),parseInt(resultArray.records[0][i].cases2)]);
+            arr.push([resultArray.records[0][i].day,parseInt(resultArray.records[0][i].cases1),parseInt(resultArray.records[0][i].cases2)]);
             ;
         }
 

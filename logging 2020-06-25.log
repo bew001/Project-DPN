@@ -775,3 +775,4 @@
 2020-06-25 12:57:54: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
 2020-06-25 13:25:31: odbc connection created
 2020-06-25 13:25:34: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
+2020-06-25 13:33:36: select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths, continent from raw where rank>0 and DATE_FORMAT(date, "%Y-%m-%d") = "2020-06-24" group by country order by totalcases desc
