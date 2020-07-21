@@ -26,7 +26,7 @@ router.get('/', function(req, res){
         " continent from raw where raw.rank>0 and DATE_FORMAT(date, \"%Y-%m-%d\") = " + today + " group by country order by totalcases desc");
     console.log(today);
      sql.queryfetch("select country,max(totalcases) as totalcases,max(newcases) as newcases,max(newdeaths) as newdeaths," +
-        " continent from raw where rank>0 and DATE_FORMAT(date, \"%Y-%m-%d\") = \"" + today + "\" group by country order by totalcases desc",res);
+        " continent from raw where `rank` >0 and DATE_FORMAT(date, \"%Y-%m-%d\") = \"" + today + "\" group by country order by totalcases desc",res);
 
 
 
