@@ -2281,3 +2281,13 @@
 2020-07-16 5:56:26: call model('Lebanon','Lebanon',3,1,2,1,2,9);
 2020-07-16 5:56:33: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','Lebanon','Italy');
 2020-07-16 5:56:33: call compare('Lebanon','Italy');
+2020-07-16 6:38:55: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','Lebanon','Lebanon');
+2020-07-16 6:38:55: call model('Lebanon','Lebanon',3,1,2,1,2,9);
+2020-07-16 6:39:3: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','Lebanon','Spain');
+2020-07-16 6:39:3: call compare('Lebanon','Spain');
+2020-07-16 6:39:11: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','Lebanon','Italy');
+2020-07-16 6:39:11: call compare('Lebanon','Italy');
+2020-07-16 6:39:23: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','Lebanon','France');
+2020-07-16 6:39:23: call compare('Lebanon','France');
+2020-07-16 6:39:31: insert into selections (email,p1,p2) values ('at-ms4@hotmail.com','Lebanon','Spain');
+2020-07-16 6:39:31: call compare('Lebanon','Spain');

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sql = require('../sql/connect');
 const { v4: uuidv4 } = require('uuid');
+const sha256 = require('js-sha256');
 var nodemailer = require('nodemailer');
 
 
@@ -12,14 +13,14 @@ router.post('/',(req,res) => {
     console.log(req.body.p1);
     if (req.body.p1 ==='login')
     {
-        sql.queryselect("select id from credentials where password = '" + req.body.p3 + "' and email = '" + req.body.p2 +"' and verified=1;",res);
+        sql.queryselect("select id from credentials where password = '" + stringToHash(req.body.p3) + "' and email = '" + req.body.p2 +"' and verified=1;",res);
     }
         else if (req.body.p1==='signup')
     {
         let uuid = uuidv4();
         while (uuid.length<10)
         {}
-        sql.queryinsert("insert into credentials (email,password) values ('" + req.body.p2 + "','" + req.body.p3 + "');",res,verificationMail(req.body.p2,uuid));
+        sql.queryinsert("insert into credentials (email,password) values ('" + req.body.p2 + "','" + stringToHash(req.body.p3) + "');",res,verificationMail(req.body.p2,uuid));
 
         sql.queryinsert("insert into verification (email,uuid) values ('" + req.body.p2 + "','" + uuid + "');");
 
@@ -29,7 +30,7 @@ router.post('/',(req,res) => {
         if(req.session.email!==req.body.p2)
             res.send("fail");
         else
-            sql.queryupdate("update credentials set password = '" + req.body.p3 + "' where email = '" + req.body.p2 +"';",res);
+            sql.queryupdate("update credentials set password = '" + stringToHash(req.body.p3) + "' where email = '" + req.body.p2 +"';",res);
 
     }
         else
@@ -75,6 +76,13 @@ function verificationMail(email,uuid)
 
 
 
+function stringToHash(s) {
+
+
+    var hash = sha256.create();
+    hash.update(s );
+    return hash.hex();
+}
 
 function test(){
     console.log('it worked');
