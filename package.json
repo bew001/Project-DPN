@@ -14,7 +14,7 @@
     "chart.js": "^2.9.3",
     "cheerio": "^1.0.0-rc.3",
     "crypto": "^1.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.1",
     "flot": "^4.2.1",
     "html-table-to-json": "^1.0.0",
